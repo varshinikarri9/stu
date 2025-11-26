@@ -1,8 +1,8 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE = "varshini89211/student-backend"
+    tools {
+        nodejs "node18"
     }
 
     stages {
@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo "Installing Node dependencies..."
                 dir('backend') {
-                    sh 'npm install'
+                    bat 'npm install'
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 echo "Running Mocha unit tests..."
                 dir('backend') {
-                    sh 'npm test'
+                    bat 'npm test'
                 }
             }
         }
