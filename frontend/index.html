@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        input { margin-right: 10px; padding: 5px; }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+        #editForm {
+            display:none;
+            margin-top:20px;
+            border:1px solid #aaa;
+            padding:15px;
+            width:300px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Student Management System</h1>
+
+<input type="text" id="name" placeholder="Name">
+<input type="number" id="age" placeholder="Age">
+<input type="text" id="branch" placeholder="Branch">
+<button onclick="addStudent()">Add Student</button>
+
+<h2>Students</h2>
+<table id="studentsTable">
+    <thead>
+    <tr>
+        <th>ID</th><th>Name</th><th>Age</th><th>Branch</th><th>Actions</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<!-- Edit Form (PUT / PATCH) -->
+<div id="editForm">
+    <h3>Edit Student</h3>
+    <input type="text" id="editName" placeholder="Name">
+    <input type="number" id="editAge" placeholder="Age">
+    <input type="text" id="editBranch" placeholder="Branch">
+    <button onclick="updateStudentPUT()">Save (PUT)</button>
+    <button onclick="updateStudentPATCH()">Save (PATCH)</button>
+    <button onclick="closeEdit()">Cancel</button>
+
+    <input type="hidden" id="editId">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: student-backend
+  template:
+    metadata:
+      labels:
+        app: student-backend
+    spec:
+      containers:
+        - name: student-backend
+          image: varshini89211/student-backend:latest
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: studentdb-storage
+              mountPath: /app/data
+      volumes:
+        - name: studentdb-storage
+          persistentVolumeClaim:
+            claimName: studentdb-pvc
