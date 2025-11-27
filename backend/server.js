@@ -2,6 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const db = require("./db");
+const client = require('prom-client');
+client.collectDefaultMetrics();
+
 
 const app = express();
 app.use(cors());
@@ -73,6 +76,11 @@ app.delete("/students/:id", (req, res) => {
     res.json({ deletedID: req.params.id });
   });
 });
+app.get('/metrics', async (req, res) => {
+    res.set('Content-Type', client.register.contentType);
+    res.end(await client.register.metrics());
+});
+
 
 if (require.main === module) {
    app.listen(5000, () => console.log("Server running"));
